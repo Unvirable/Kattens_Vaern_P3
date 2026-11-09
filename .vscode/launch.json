@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-KattensVaernApplication<Kattens-Vaern>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.kattensvaern.KattensVaernApplication",
+            "projectName": "Kattens-Vaern",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
