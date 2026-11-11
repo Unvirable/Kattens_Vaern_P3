@@ -18,4 +18,8 @@ public class BrowseCatsService {
         return catDAO.getAllCats();
     }
 
+    public Cat findCatById(int id){
+        return catDAO.findCatById(id);
+    }
+
 }

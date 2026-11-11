@@ -4,6 +4,7 @@ import com.kattensvaern.model.Cat;
 import com.kattensvaern.service.BrowseCatsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,4 +24,9 @@ public class BrowseCatsController {
     public List<Cat> getCats(){
         return browseCatsService.getAllCats();
     }
+
+   @GetMapping("/api/findCatById")
+   public Cat findCatById(@RequestParam int id){
+        return browseCatsService.findCatById(id);
+   }
 }
