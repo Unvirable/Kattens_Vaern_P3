@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cats</title>
+    <title>Cats available for adoption</title>
+    <link rel="stylesheet" href="../css/browseCats.css">
+    <link rel="stylesheet" href="../css/navBar.css">
+    <script src="../js/browseCats.js" defer ></script>
+    <script src="../js/loadNavbar.js" defer ></script>
 </head>
-<body>
+<body onload="getCats(); loadNavbar();">
+<div id="navBar"> </div>
+<h1 class="title"> Cats available for adoption </h1>
 
-<h1> Browse Cats</h1>
+    <div id="catContainer"> </div>
 
 </body>
 </html>
