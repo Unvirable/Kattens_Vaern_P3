@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Støt kattene | Kattens Værn</title>
+  <script src="../js/loadNavbar.js" defer> </script>
+  <link rel="stylesheet" href="../css/navBar.css">
 
   <style>
     :root {
@@ -44,22 +46,17 @@
     .page-footer { color: var(--muted); }
   </style>
 </head>
-<body>
+<body onload="loadNavbar()">
+
   <header class="site-header">
+    <div id="navBar"> </div>
     <p>
       <a href="#top"><br><strong>Kattens Værn</strong></a>
     </p>
-
-    <nav>
-      <a href="browseCats.html">Adoption</a> |
-      <a href="newsPage.html">Viden og læring</a> |
-      <a href="webShop.html">Webshop</a> |
-      <a href="donationPage.html"><strong>Støt os</strong></a> |
-      <a href="loginPage.html">Log ind</a>
-    </nav>
   </header>
 
   <main id="top">
+
 
     <section>
       <p class="green-text"><strong>STØT KATTENS VÆRN TABERE</strong></p>
