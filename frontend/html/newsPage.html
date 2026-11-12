@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>News</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyheder | Kattens Værn</title>
+
+    <link rel="stylesheet" href="../css/navBar.css">
+
+    <script src="../js/loadNavbar.js" defer></script>
+    <script src="../js/newsPage.js" defer></script>
 </head>
-<body>
+
+<body onload="loadNavbar(); loadNews();">
+
+    <div id="navBar"></div>
+
+    <h1>Nyheder fra Kattens Værn</h1>
+
+    <div id="newsContainer"></div>
 
 </body>
-</html>
+</html> 
+<!-- Tilføjet newsPage.js, så siden kan hente nyheder.
+Tilføjet newsContainer, hvor nyhederne skal vises.
+Tilføjet loadNews(), så nyhederne hentes, når siden åbner -->

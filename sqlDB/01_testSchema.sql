@@ -12,3 +12,11 @@ CREATE TABLE catsTest(
     city varchar(100) NOT NULL,
     description varchar(500) NOT NULL
 );
+
+CREATE TABLE NewsArticles(
+    id SERIAL PRIMARY KEY,
+    title varchar(100) NOT NULL,
+    content TEXT NOT NULL, -- tror det er sådan man viser texten/nyhedsteksten
+    date DATE NOT NULL,
+    imageUrl varchar(500) -- vis billede
+);                     
