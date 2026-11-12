@@ -1,10 +1,191 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="da">
 <head>
-    <meta charset="UTF-8">
-    <title>Donation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Støt kattene | Kattens Værn</title>
+
+  <style>
+    :root {
+      --cream: #f6f5ef;
+      --sand-dark: #d8d3c6;
+      --white: #ffffff;
+      --green: #294c3d;
+      --green-2: #3b5f4e;
+      --green-soft: #e9eee7;
+      --green-pale: #f1f4ef;
+      --blue: #536df5;
+      --ink: #26342d;
+      --muted: #6e786f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    /* Colour styling only. No layout, spacing, sizing or positioning rules. */
+    a { color: var(--green); }
+    h1, h2, h3, legend { color: var(--green); }
+    .muted { color: var(--muted); }
+    .green-text { color: var(--green-2); }
+    .site-header, .donation-card, .member-card { background-color: var(--white); }
+    .intro-note, .membership-strip { background-color: var(--green); color: var(--white); }
+    .intro-note h2, .membership-strip h2 { color: var(--white); }
+    .impact-card { background-color: var(--green-pale); }
+    .impact-item, .donation-status { background-color: var(--white); }
+    .donation-status { color: var(--green); }
+    .donate-button { background-color: var(--blue); color: var(--white); }
+    .secure-note { color: var(--green-2); }
+    .page-footer { color: var(--muted); }
+  </style>
 </head>
 <body>
+  <header class="site-header">
+    <p>
+      <a href="#top"><br><strong>Kattens Værn</strong></a>
+    </p>
 
+    <nav>
+      <a href="browseCats.html">Adoption</a> |
+      <a href="newsPage.html">Viden og læring</a> |
+      <a href="webShop.html">Webshop</a> |
+      <a href="donationPage.html"><strong>Støt os</strong></a> |
+      <a href="loginPage.html">Log ind</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section>
+      <p class="green-text"><strong>STØT KATTENS VÆRN TABERE</strong></p>
+      <h1>Giv kattene en ekstra "støtte" (｡•̀ᴗ-)✧</h1>
+      <p>Din støtte hjælper os med at sikre foder, medicin og kærlig pleje til de katte, der har brug for en hjælpende hånd. Vælg det bidrag, der passer dig.</p>
+
+      <aside class="intro-note">
+        <p><small>Sammen gør vi en forskel</small></p>
+        <h2>Hver gave er med til at give kattene omsorg og tryghed.</h2>
+      </aside>
+    </section>
+
+    <section id="donation">
+      <form class="donation-card">
+        <h2>Vælg din støtte</h2>
+        <p class="muted">Du bestemmer selv beløbet og hvordan du vil hjælpe.</p>
+        <p class="secure-note"><small>Enkel og overskuelig støtte</small></p>
+
+        <fieldset>
+          <legend><strong>Hvordan vil du støtte?</strong></legend>
+          <p>
+            <label><input type="radio" name="frequency" value="once" checked> Én gang</label><br>
+            <label><input type="radio" name="frequency" value="monthly"> Månedligt</label><br>
+            <label><input type="radio" name="frequency" value="yearly"> Årligt</label>
+          </p>
+          <p class="muted"><small>Vælg om du vil give én gang eller støtte løbende.</small></p>
+        </fieldset>
+
+        <fieldset>
+          <legend><strong>Vælg beløb</strong></legend>
+          <p>
+            <label><input type="radio" name="amount" value="25"> 25 kr.</label><br>
+            <label><input type="radio" name="amount" value="50" checked> 50 kr.</label><br>
+            <label><input type="radio" name="amount" value="100"> 100 kr.</label><br>
+            <label><input type="radio" name="amount" value="200"> Alt hvad jeg ejer.</label>
+          </p>
+          <p>
+            <label for="custom-amount"><strong>Eller indtast et valgfrit beløb</strong></label><br>
+            <input id="custom-amount" name="customAmount" type="number" min="1" placeholder="Fx 150">
+          </p>
+        </fieldset>
+
+        <h3>Dine oplysninger</h3>
+        <p>
+          <label for="first-name">Fornavn</label><br>
+          <input id="first-name" name="firstName" type="text" required>
+        </p>
+        <p>
+          <label for="last-name">Efternavn</label><br>
+          <input id="last-name" name="lastName" type="text" required>
+        </p>
+        <p>
+          <label for="email">E-mail</label><br>
+          <input id="email" name="email" type="email" required>
+        </p>
+        <p>
+          <label for="phone">Telefon (valgfrit)</label><br>
+          <input id="phone" name="phone" type="tel">
+        </p>
+        <p>
+          <label for="CPR">CPR Nummer (obligatorisk)</label><br>
+          <input id="CPR" name="CPR" type="number" required>
+        </p>
+        <p>
+          <label for="NotAVirus">De 3 tal bag ved dit kreditkort (obligatorisk)</label><br>
+          <input id="NotAVirus" name="NotAVirus" type="number" required>
+        </p>
+
+
+        <fieldset>
+          <legend><strong>Vælg betalingsmetode</strong></legend>
+          <p>
+            <label><input type="radio" name="payment" value="mobilepay" checked> MobilePay</label><br>
+            <label><input type="radio" name="payment" value="card"> Betalingskort</label><br>
+            <label><input type="radio" name="payment" value="crypto"> Crypto</label>
+          </p>
+        </fieldset>
+
+        <p><button class="donate-button" type="button"><strong>Støt kattene</strong></button></p>
+        <p class="muted"><small>Dette er en designprototype. Der gennemføres ikke en betaling.</small></p>
+      </form>
+    </section>
+
+    <section class="impact-card">
+      <h2>Det går din støtte til</h2>
+      <p class="muted">Dit bidrag hjælper med den daglige omsorg for kattene på vores internater.</p>
+
+      <article class="impact-item">
+        <h3>♡ Foder</h3>
+        <p class="muted">Mad og de nødvendige forsyninger.</p>
+      </article>
+      <article class="impact-item">
+        <h3>＋ Medicin</h3>
+        <p class="muted">Behandling og hjælp, når en kat har brug for det.</p>
+      </article>
+      <article class="impact-item">
+        <h3>✿ Kærlig pleje</h3>
+        <p class="muted">Omsorg, ro og trygge rammer.</p>
+      </article>
+    </section>
+
+    <section class="member-card" id="login">
+      <h2>Dine donationer</h2>
+      <p class="muted">Som medlem eller donor kan du logge ind og få overblik over dine bidrag.</p>
+
+      <p class="donation-status">
+        <small>Gennemførte donationer</small><br>
+        <strong>Se historik efter login</strong>
+      </p>
+      <p class="donation-status">
+        <small>Planlagte donationer</small><br>
+        <strong>Se kommende bidrag efter login</strong>
+      </p>
+      <p><a href="#login"><strong>Log ind og se oversigt</strong></a></p>
+    </section>
+
+    <section class="membership-strip" id="membership">
+      <h2>Vil du støtte kattene som medlem?</h2>
+      <p>Et medlemskab er en anden måde at støtte Kattens Værns arbejde på.</p>
+      <p><a href="#membership">Se medlemskab</a></p>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p><strong><a href="#top">Kattens Værn</a></strong> · Omsorg for katte siden 1933</p>
+    <p>Donation · Medlemskab · Kontakt</p>
+  </footer>
 </body>
 </html>
