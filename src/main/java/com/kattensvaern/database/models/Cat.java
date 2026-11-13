@@ -1,4 +1,4 @@
-package com.kattensvaern.model;
+package com.kattensvaern.database.models;
 
 public class Cat {
     private int id;

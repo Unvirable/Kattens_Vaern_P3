@@ -1,6 +1,6 @@
-package com.kattensvaern.DAO;
+package com.kattensvaern.database.DAO;
 
-import com.kattensvaern.model.NewsArticle;
+import com.kattensvaern.database.models.NewsArticle;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.*;

@@ -1,6 +1,6 @@
-package com.kattensvaern.DAO;
+package com.kattensvaern.database.DAO;
 
-import com.kattensvaern.model.Cat;
+import com.kattensvaern.database.models.Cat;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;

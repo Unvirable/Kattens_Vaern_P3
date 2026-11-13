@@ -1,7 +1,7 @@
 package com.kattensvaern.service;
 
-import com.kattensvaern.DAO.NewsDAO;
-import com.kattensvaern.model.NewsArticle;
+import com.kattensvaern.database.DAO.NewsDAO;
+import com.kattensvaern.database.models.NewsArticle;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
