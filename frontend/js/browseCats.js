@@ -15,13 +15,13 @@ async function getCats(){
             catElement.classList.add("cat");
 
             const name = document.createElement("h2");
-            name.textContent = "Name: " + cat.name;
+            name.textContent = "Navn: " + cat.name;
 
             const age = document.createElement("h2")
-            age.textContent = "Age: " + cat.age;
+            age.textContent = "Alder: " + cat.age;
 
             const city = document.createElement("h2");
-            city.textContent = "Located in: " + cat.city;
+            city.textContent = "By: " + cat.city;
 
             const description = document.createElement("h2");
             description.textContent = cat.description
