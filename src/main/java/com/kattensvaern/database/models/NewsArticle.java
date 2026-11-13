@@ -1,4 +1,4 @@
-package com.kattensvaern.model;
+package com.kattensvaern.database.models;
 
 import java.time.LocalDate;
 

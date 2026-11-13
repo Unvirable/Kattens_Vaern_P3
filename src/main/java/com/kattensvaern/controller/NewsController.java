@@ -1,6 +1,6 @@
 package com.kattensvaern.controller;
 
-import com.kattensvaern.model.NewsArticle;
+import com.kattensvaern.database.models.NewsArticle;
 import com.kattensvaern.service.NewsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

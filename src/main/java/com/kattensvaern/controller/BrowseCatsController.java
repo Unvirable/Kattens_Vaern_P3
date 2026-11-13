@@ -1,6 +1,6 @@
 package com.kattensvaern.controller;
 
-import com.kattensvaern.model.Cat;
+import com.kattensvaern.database.models.Cat;
 import com.kattensvaern.service.BrowseCatsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

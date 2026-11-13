@@ -1,7 +1,7 @@
 package com.kattensvaern.service;
 
-import com.kattensvaern.DAO.CatDAO;
-import com.kattensvaern.model.Cat;
+import com.kattensvaern.database.DAO.CatDAO;
+import com.kattensvaern.database.models.Cat;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
