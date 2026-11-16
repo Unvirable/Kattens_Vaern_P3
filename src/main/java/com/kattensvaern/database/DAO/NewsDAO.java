@@ -18,7 +18,7 @@ public class NewsDAO {
 
     public List<NewsArticle> getAllNews() {
 
-        String sql = "SELECT * FROM newsarticles ORDER BY date DESC";
+        String sql = "SELECT news_article_id, title, content, date_created FROM newsarticles ORDER BY date_created DESC";
         List<NewsArticle> news = new ArrayList<>();
 
         try (Connection conn = dataSource.getConnection();
@@ -27,11 +27,10 @@ public class NewsDAO {
 
             while (rs.next()) {
                 NewsArticle article = new NewsArticle(
-                        rs.getInt("id"),
+                        rs.getInt("news_article_id"),
                         rs.getString("title"),
                         rs.getString("content"),
-                        rs.getDate("date").toLocalDate(),
-                        rs.getString("imageurl")
+                        rs.getTimestamp("date_created").toLocalDateTime().toLocalDate()
                 );
 
                 news.add(article);

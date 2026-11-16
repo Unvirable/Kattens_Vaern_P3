@@ -13,7 +13,7 @@ CREATE TABLE catsTest(
     description varchar(500) NOT NULL
 );
 
-CREATE TABLE NewsArticles(
+CREATE TABLE NewsArticle(
     id SERIAL PRIMARY KEY,
     title varchar(100) NOT NULL,
     content TEXT NOT NULL, -- tror det er sådan man viser texten/nyhedsteksten
