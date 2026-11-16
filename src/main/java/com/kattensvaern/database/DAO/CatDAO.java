@@ -18,7 +18,7 @@ public class CatDAO {
     }
 
     public List<Cat> getAllCats(){
-        String sql = "Select * From catsTest";
+        String sql = "Select cat_id, name, age, located_in, description From cats";
 
         List<Cat> cats = new ArrayList<>();
 
@@ -28,10 +28,10 @@ public class CatDAO {
 
                 while(rs.next()) {
                     Cat cat = new Cat(
-                            rs.getInt("id"),
+                            rs.getInt("cat_id"),
                             rs.getString("name"),
                             rs.getInt("age"),
-                            rs.getString("city"),
+                            rs.getString("located_in"),
                             rs.getString("description")
                     );
                     cats.add(cat);
@@ -44,7 +44,7 @@ public class CatDAO {
 
 
    public Cat findCatById(int id) {
-       String sql = "SELECT id, name, age, city, description FROM catstest WHERE id = ?";
+       String sql = "SELECT cat_id, name, age, located_in, description FROM cats WHERE cat_id = ?";
 
        try(Connection conn = dataSource.getConnection();
            PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -53,10 +53,10 @@ public class CatDAO {
            try(ResultSet rs = stmt.executeQuery()){
                if(rs.next()) {
                    return new Cat(
-                           rs.getInt("id"),
+                           rs.getInt("cat_id"),
                            rs.getString("name"),
                            rs.getInt("age"),
-                           rs.getString("city"),
+                           rs.getString("located_in"),
                            rs.getString("description")
                    );
                }

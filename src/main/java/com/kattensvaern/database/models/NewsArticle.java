@@ -17,6 +17,12 @@ public class NewsArticle {
         this.date = date;
         this.imageUrl = imageUrl;
     }
+    public NewsArticle(int id, String title, String content, LocalDate date) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.date = date;
+    }
 
     public int getId() {
         return id;
