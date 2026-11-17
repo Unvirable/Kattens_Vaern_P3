@@ -18,10 +18,10 @@ async function getCats(){
             name.textContent = "Navn: " + cat.name;
 
             const age = document.createElement("h2")
-            age.textContent = "Alder: " + cat.age;
+            age.textContent = "Fødselsdag: " + cat.birthday;
 
             const city = document.createElement("h2");
-            city.textContent = "By: " + cat.city;
+            city.textContent = "By: " + cat.locatedIn;
 
             const description = document.createElement("h2");
             description.textContent = cat.description

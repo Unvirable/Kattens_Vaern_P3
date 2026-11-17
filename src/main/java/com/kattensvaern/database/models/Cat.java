@@ -1,27 +1,37 @@
 package com.kattensvaern.database.models;
 
+import java.time.LocalDate;
+
 public class Cat {
     private int id;
     private String name;
-    private int age;
-    private String city;
+    private LocalDate birthday;
+    private String gender;
+    private String catType;
+    private String locatedIn;
     private String description;
+    private String available;
 
-    public Cat(){
-
-    }
-
-    public Cat(int id, String name, int age, String city, String description){
+    public Cat(int id, String name, LocalDate birthday, String gender, String catType,
+               String locatedIn, String description, String available){
         this.id = id;
         this.name = name;
-        this.age = age;
-        this.city = city;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.catType = catType;
+        this.locatedIn = locatedIn;
         this.description = description;
+        this.available = available;
     }
-    public Cat(String name, int age, String city, String description){
+
+    public Cat(int id, String name, LocalDate birthday, String gender, String catType,
+               String locatedIn, String description){
+        this.id = id;
         this.name = name;
-        this.age = age;
-        this.city = city;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.catType = catType;
+        this.locatedIn = locatedIn;
         this.description = description;
     }
 
@@ -35,12 +45,12 @@ public class Cat {
         return name;
     }
 
-    public int getAge(){
-        return age;
+    public LocalDate getBirthday(){
+        return birthday;
     }
 
-    public String getCity(){
-        return city;
+    public String getLocatedIn(){
+        return locatedIn;
     }
 
     public String getDescription(){

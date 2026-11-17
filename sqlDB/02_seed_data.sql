@@ -44,42 +44,52 @@ VALUES
 -- =============================================
 
 INSERT INTO cats
-(name, age, description, located_in, adoption_status)
+(name, birthday, gender, catType, description, located_in, availability)
 VALUES
     (
         'Milo',
-        2,
+        '2025-10-05',
+        'Han',
+        'Inde/ude Kat',
         'A playful and affectionate cat who loves attention and cuddles.',
         'Aalborg Shelter',
-        TRUE
+        'Available'
     ),
     (
         'Luna',
-        4,
+        '2022-11-17',
+        'Hun',
+        'Inde/ude Kat',
         'A calm and gentle female cat who enjoys relaxing in sunny spots.',
         'Aalborg Shelter',
-        TRUE
+        'Available'
     ),
     (
         'Oliver',
-        1,
+        '2025-11-17',
+        'Han',
+        'Inde/ude Kat',
         'A curious and energetic young cat who loves playing with toys.',
         'Aarhus Shelter',
-        TRUE
+        'Available'
     ),
     (
         'Bella',
-        6,
+        '2020-11-17',
+        'Hun',
+        'Inde/ude Kat',
         'A sweet and quiet cat who would thrive in a peaceful home.',
         'Odense Shelter',
-        FALSE
+        'Available'
     ),
     (
         'Charlie',
-        3,
+        '2023-11-17',
+        'Han',
+        'Inde/ude Kat',
         'A friendly and social cat who gets along well with other cats.',
         'Aalborg Shelter',
-        TRUE
+        'Available'
     );
 
 
