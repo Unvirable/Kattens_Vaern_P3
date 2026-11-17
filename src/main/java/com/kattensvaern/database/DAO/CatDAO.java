@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class CatDAO {
     }
 
     public List<Cat> getAllCats(){
-        String sql = "Select cat_id, name, age, located_in, description From cats";
+        String sql = "Select cat_id, name, birthday, gender, catType, located_in, description From cats";
 
         List<Cat> cats = new ArrayList<>();
 
@@ -30,7 +31,9 @@ public class CatDAO {
                     Cat cat = new Cat(
                             rs.getInt("cat_id"),
                             rs.getString("name"),
-                            rs.getInt("age"),
+                            rs.getObject("birthday", LocalDate.class),
+                            rs.getString("gender"),
+                            rs.getString("catType"),
                             rs.getString("located_in"),
                             rs.getString("description")
                     );
@@ -44,7 +47,7 @@ public class CatDAO {
 
 
    public Cat findCatById(int id) {
-       String sql = "SELECT cat_id, name, age, located_in, description FROM cats WHERE cat_id = ?";
+       String sql = "SELECT cat_id, name, birthday, gender, catType, located_in, description FROM cats WHERE cat_id = ?";
 
        try(Connection conn = dataSource.getConnection();
            PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -55,7 +58,9 @@ public class CatDAO {
                    return new Cat(
                            rs.getInt("cat_id"),
                            rs.getString("name"),
-                           rs.getInt("age"),
+                           rs.getObject("birthday", LocalDate.class),
+                           rs.getString("gender"),
+                           rs.getString("catType"),
                            rs.getString("located_in"),
                            rs.getString("description")
                    );

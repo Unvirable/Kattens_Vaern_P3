@@ -6,10 +6,12 @@ CREATE TABLE users(
 CREATE TABLE cats(
     cat_id SERIAL PRIMARY KEY,
     name varchar(50) NOT NULL,
-    age integer NOT NULL,
+    birthday DATE NOT NULL,
+    gender varchar(50) NOT NULL,
+    catType varchar(50) NOT NULL,
     description varchar(500) NOT NULL,
     located_in varchar(50) NOT NULL,
-    adoption_status BOOLEAN NOT NULL,
+    availability varchar(50) NOT NULL,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
