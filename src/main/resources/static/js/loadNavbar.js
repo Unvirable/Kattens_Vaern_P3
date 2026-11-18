@@ -29,7 +29,7 @@ async function loadNavbar() {
             accountLink.href = "myCatPage.html";
 
             // Show profile icon for loggin in users
-            document.getElementById("profileIcon").hidden = false;
+            
         }
 
     } catch (error) {
