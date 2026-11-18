@@ -18,7 +18,7 @@ public class NewsDAO {
 
     public List<NewsArticle> getAllNews() {
 
-        String sql = "SELECT news_article_id, title, content, date_created FROM newsarticles ORDER BY date_created DESC";
+        String sql = "SELECT news_article_id, title, content, date_created, published_by FROM newsarticles ORDER BY date_created DESC";
         List<NewsArticle> news = new ArrayList<>();
 
         try (Connection conn = dataSource.getConnection();
@@ -51,7 +51,7 @@ public class NewsDAO {
 
     // FIND NEWS BY ID
     public NewsArticle findNewsById(int id) {
-        String sql = "SELECT news_article_id, title, content, date_created FROM newsarticles WHERE news_article_id = ?";
+        String sql = "SELECT news_article_id, title, content, date_created, published_by FROM newsarticles WHERE news_article_id = ?";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
