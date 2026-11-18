@@ -28,8 +28,12 @@ async function loadNavbar() {
             accountLink.textContent = "Min kat";
             accountLink.href = "myCatPage.html";
 
-            // Show profile icon for loggin in users
-            
+            // Show profile icon for logged-in users
+            const profileIcon = document.getElementById("profileIcon");
+
+            if (profileIcon) {
+                profileIcon.hidden = false;
+            }
         }
 
     } catch (error) {
