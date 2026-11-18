@@ -36,24 +36,70 @@ public class Cat {
     }
 
 
-
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public LocalDate getBirthday(){
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public String getLocatedIn(){
+    public String getGender() {
+        return gender;
+    }
+
+    public String getCatType() {
+        return catType;
+    }
+
+    public String getLocatedIn() {
         return locatedIn;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
+
+    public String getAvailability() {
+        return available;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setCatType(String catType) {
+        this.catType = catType;
+    }
+
+    public void setLocatedIn(String locatedIn) {
+        this.locatedIn = locatedIn;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAvailability(String available) {
+        this.available = available;
+    }
+
+
+
 }

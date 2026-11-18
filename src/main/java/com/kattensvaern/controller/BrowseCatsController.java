@@ -6,6 +6,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -29,4 +38,22 @@ public class BrowseCatsController {
    public Cat findCatById(@RequestParam int id){
         return browseCatsService.findCatById(id);
    }
+
+
+    @PostMapping("/api/cats")
+    public void createCat(@RequestBody Cat cat) {
+        browseCatsService.createCat(cat);
+    }
+
+    @PutMapping("/api/cats/{id}")
+    public void updateCat(@PathVariable int id, @RequestBody Cat cat) {
+        cat.setId(id);
+        browseCatsService.updateCat(cat);
+    }
+
+    @DeleteMapping("/api/cats/{id}")
+    public void deleteCat(@PathVariable int id) {
+        browseCatsService.deleteCat(id);
+    }
+
 }
