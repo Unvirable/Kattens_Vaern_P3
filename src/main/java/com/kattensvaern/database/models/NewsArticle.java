@@ -9,19 +9,23 @@ public class NewsArticle {
     private String content;
     private LocalDate date;
     private String imageUrl;
+    private String publishedBy;
 
-    public NewsArticle(int id, String title, String content, LocalDate date, String imageUrl) {
+
+    public NewsArticle(int id, String title, String content, LocalDate date, String publishedBy, String imageUrl) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.date = date;
+        this.publishedBy = publishedBy;
         this.imageUrl = imageUrl;
     }
-    public NewsArticle(int id, String title, String content, LocalDate date) {
+    public NewsArticle(int id, String title, String content, LocalDate date, String publishedBy) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.date = date;
+        this.publishedBy = publishedBy;
     }
 
     public int getId() {
@@ -44,6 +48,9 @@ public class NewsArticle {
         return imageUrl;
     }
 
+    public String getPublishedBy() {
+        return publishedBy;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -63,6 +70,10 @@ public class NewsArticle {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public void setPublishedBy(String publishedBy) {
+        this.publishedBy = publishedBy;
     }
 
 }
