@@ -1,4 +1,6 @@
-async function getCats(){
+let cats;
+
+async function getCats() {
     try {
         const response = await fetch("http://localhost:8080/api/getCats")
 
@@ -6,9 +8,16 @@ async function getCats(){
             throw new Error("Failed to fetch cats")
         }
 
-        const cats = await response.json()
+        cats = await response.json()
+        renderCats(cats);
+    } catch (error) {
+        console.error("error", error)
+    }
+}
 
+function renderCats(cats){
         const container = document.getElementById("catContainer");
+        container.innerHTML = "";
 
         cats.forEach(cat =>{
             const catElement = document.createElement("div");
@@ -21,10 +30,14 @@ async function getCats(){
             age.textContent = "Fødselsdag: " + cat.birthday;
 
             const city = document.createElement("h2");
-            city.textContent = "By: " + cat.locatedIn;
+            city.textContent = "By: " + cat.locatedInLabel;
 
-            const description = document.createElement("h2");
-            description.textContent = cat.description
+            const catType = document.createElement("h2");
+            catType.textContent = "Type: " + cat.catTypeLabel
+
+            const description = document.createElement("p")
+            description.textContent = cat.description;
+            description.classList.add("SmallDescription")
 
             const button = document.createElement("button")
             button.textContent = "Read more";
@@ -36,17 +49,18 @@ async function getCats(){
             catElement.appendChild(name);
             catElement.appendChild(age);
             catElement.appendChild(city);
+            catElement.appendChild(catType);
             catElement.appendChild(description);
             catElement.appendChild(button);
 
             container.appendChild(catElement);
         })
-
-
-    } catch (error) {
-        console.error("error", error)
-    }
 }
+document.getElementById("filter").addEventListener("change", (event) => {
+    const city = event.target.value;
+    const filtered = city ? cats.filter(cat => cat.locatedIn === city) : cats;
+    renderCats(filtered)
+})
 
 async function getCatDetails(){
     const params = new URLSearchParams(window.location.search);
@@ -63,17 +77,21 @@ async function getCatDetails(){
         const name = document.createElement("h2")
         name.textContent = cat.name;
 
-        const age = document.createElement("h2")
-        age.textContent = cat.age;
+        const foedselsdag = document.createElement("h2")
+        foedselsdag.textContent = "Fødselsdag: " + cat.birthday;
+
+        const catType = document.createElement("h2")
+        catType.textContent = "Type: " + cat.catTypeLabel;
 
         const city = document.createElement("h2")
-        city.textContent = cat.city;
+        city.textContent = "By: " + cat.locatedInLabel;
 
-        const description = document.createElement("h2")
+        const description = document.createElement("p")
         description.textContent = cat.description;
 
         catBox.appendChild(name)
-        catBox.appendChild(age)
+        catBox.appendChild(foedselsdag)
+        catBox.appendChild(catType)
         catBox.appendChild(city)
         catBox.appendChild(description)
     } catch(error){

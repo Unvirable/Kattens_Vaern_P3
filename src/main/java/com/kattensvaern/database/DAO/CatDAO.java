@@ -1,6 +1,7 @@
 package com.kattensvaern.database.DAO;
 
 import com.kattensvaern.database.models.Cat;
+import com.kattensvaern.database.models.enums.*;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -18,8 +19,24 @@ public class CatDAO {
         this.dataSource = datasource;
     }
 
+    private static final String COLUMNS = "cat_id, name, birthday, gender, cat_type, " +
+                                          "located_in, description, availability";
+
+    private Cat mapRow(ResultSet rs) throws SQLException {
+        return new Cat(
+                rs.getInt("cat_id"),
+                rs.getString("name"),
+                rs.getObject("birthday", LocalDate.class),
+                Gender.valueOf(rs.getString("gender")),
+                CatType.valueOf(rs.getString("cat_type")),
+                Shelter.valueOf(rs.getString("located_in")),
+                rs.getString("description"),
+                Availability.valueOf(rs.getString("availability"))
+        );
+    }
+
     public List<Cat> getAllCats(){
-        String sql = "Select cat_id, name, birthday, gender, catType, located_in, description From cats";
+        String sql = "SELECT " + COLUMNS + " FROM cats";
 
         List<Cat> cats = new ArrayList<>();
 
@@ -28,16 +45,7 @@ public class CatDAO {
             ResultSet rs = stmt.executeQuery()) {
 
                 while(rs.next()) {
-                    Cat cat = new Cat(
-                            rs.getInt("cat_id"),
-                            rs.getString("name"),
-                            rs.getObject("birthday", LocalDate.class),
-                            rs.getString("gender"),
-                            rs.getString("catType"),
-                            rs.getString("located_in"),
-                            rs.getString("description")
-                    );
-                    cats.add(cat);
+                    cats.add(mapRow(rs));
                 }
 
         }catch (SQLException e){ e.printStackTrace();}
@@ -47,7 +55,7 @@ public class CatDAO {
 
 
    public Cat findCatById(int id) {
-       String sql = "SELECT cat_id, name, birthday, gender, catType, located_in, description FROM cats WHERE cat_id = ?";
+       String sql = "SELECT " + COLUMNS + " FROM cats WHERE cat_id = ?";
 
        try(Connection conn = dataSource.getConnection();
            PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -55,15 +63,7 @@ public class CatDAO {
            stmt.setInt(1,id);
            try(ResultSet rs = stmt.executeQuery()){
                if(rs.next()) {
-                   return new Cat(
-                           rs.getInt("cat_id"),
-                           rs.getString("name"),
-                           rs.getObject("birthday", LocalDate.class),
-                           rs.getString("gender"),
-                           rs.getString("catType"),
-                           rs.getString("located_in"),
-                           rs.getString("description")
-                   );
+                  return mapRow(rs);
                }
            }
        } catch (SQLException e){ e.printStackTrace();}
