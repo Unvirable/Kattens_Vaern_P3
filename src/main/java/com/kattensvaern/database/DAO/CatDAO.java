@@ -1,6 +1,7 @@
 package com.kattensvaern.database.DAO;
 
 import com.kattensvaern.database.models.Cat;
+import com.kattensvaern.database.models.enums.*;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -19,8 +20,24 @@ public class CatDAO {
         this.dataSource = datasource;
     }
 
+    private static final String COLUMNS = "cat_id, name, birthday, gender, cat_type, " +
+                                          "located_in, description, availability";
+
+    private Cat mapRow(ResultSet rs) throws SQLException {
+        return new Cat(
+                rs.getInt("cat_id"),
+                rs.getString("name"),
+                rs.getObject("birthday", LocalDate.class),
+                Gender.valueOf(rs.getString("gender")),
+                CatType.valueOf(rs.getString("cat_type")),
+                Shelter.valueOf(rs.getString("located_in")),
+                rs.getString("description"),
+                Availability.valueOf(rs.getString("availability"))
+        );
+    }
+
     public List<Cat> getAllCats(){
-        String sql = "SELECT cat_id, name, birthday, gender, catType, located_in, description, availability FROM cats";
+        String sql = "SELECT " + COLUMNS + " FROM cats";
 
         List<Cat> cats = new ArrayList<>();
 
@@ -29,17 +46,7 @@ public class CatDAO {
             ResultSet rs = stmt.executeQuery()) {
 
                 while(rs.next()) {
-                    Cat cat = new Cat(
-                            rs.getInt("cat_id"),
-                            rs.getString("name"),
-                            rs.getObject("birthday", LocalDate.class),
-                            rs.getString("gender"),
-                            rs.getString("catType"),
-                            rs.getString("located_in"),
-                            rs.getString("description"),
-                            rs.getString("availability")
-                    );
-                    cats.add(cat);
+                    cats.add(mapRow(rs));
                 }
 
         }catch (SQLException e){ e.printStackTrace();}
@@ -49,7 +56,7 @@ public class CatDAO {
 
 
    public Cat findCatById(int id) {
-       String sql = "SELECT cat_id, name, birthday, gender, catType, located_in, description, availability FROM cats WHERE cat_id = ?";
+       String sql = "SELECT " + COLUMNS + " FROM cats WHERE cat_id = ?";
 
        try(Connection conn = dataSource.getConnection();
            PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -57,16 +64,7 @@ public class CatDAO {
            stmt.setInt(1,id);
            try(ResultSet rs = stmt.executeQuery()){
                if(rs.next()) {
-                   return new Cat(
-                           rs.getInt("cat_id"),
-                           rs.getString("name"),
-                           rs.getObject("birthday", LocalDate.class),
-                           rs.getString("gender"),
-                           rs.getString("catType"),
-                           rs.getString("located_in"),
-                           rs.getString("description"),
-                           rs.getString("availability")
-                   );
+                  return mapRow(rs);
                }
            }
        } catch (SQLException e){ e.printStackTrace();}
@@ -76,7 +74,7 @@ public class CatDAO {
 
 
    public void CreateCat(Cat cat){
-        String sql = "INSERT INTO cats (name, birthday, gender, cattype, located_in, description, availability) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO cats (name, birthday, gender, cat_type, located_in, description, availability) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
        try(Connection conn = dataSource.getConnection();
            PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -85,11 +83,11 @@ public class CatDAO {
 
                stmt.setString(1, cat.getName());
                stmt.setDate(2, java.sql.Date.valueOf(cat.getBirthday()));
-               stmt.setString(3, cat.getGender());
-               stmt.setString(4, cat.getCatType());
-               stmt.setString(5, cat.getLocatedIn());
+               stmt.setObject(3, cat.getGender());
+               stmt.setObject(4, cat.getCatType());
+               stmt.setObject(5, cat.getLocatedIn());
                stmt.setString(6, cat.getDescription());
-               stmt.setString(7, cat.getAvailability());
+               stmt.setObject(7, cat.getAvailability());
 
                stmt.executeUpdate();
 
@@ -129,7 +127,7 @@ public class CatDAO {
 
 
     public void UpdateCat(Cat cat){
-        String sql = "UPDATE cats SET name = ?, birthday = ?, gender = ?, catType = ?, located_in = ?, description = ?, availability = ? WHERE cat_id = ?";
+        String sql = "UPDATE cats SET name = ?, birthday = ?, gender = ?, cat_type = ?, located_in = ?, description = ?, availability = ? WHERE cat_id = ?";
 
         try(Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -138,11 +136,11 @@ public class CatDAO {
 
             stmt.setString(1, cat.getName());
             stmt.setDate(2, java.sql.Date.valueOf(cat.getBirthday()));
-            stmt.setString(3, cat.getGender());
-            stmt.setString(4, cat.getCatType());
-            stmt.setString(5, cat.getLocatedIn());
+            stmt.setObject(3, cat.getGender());
+            stmt.setObject(4, cat.getCatType());
+            stmt.setObject(5, cat.getLocatedIn());
             stmt.setString(6, cat.getDescription());
-            stmt.setString(7, cat.getAvailability());
+            stmt.setObject(7, cat.getAvailability());
             stmt.setInt(8, cat.getId());
 
             stmt.executeUpdate();
@@ -167,9 +165,10 @@ public class CatDAO {
                 c.name,
                 c.birthday,
                 c.gender,
-                c.catType,
+                c.cat_type,
                 c.located_in,
-                c.description
+                c.description,
+                c.availability
             FROM cats c
             JOIN adoptionRecord ar ON c.cat_id = ar.cat_id
             JOIN users u ON ar.user_id = u.user_id
@@ -188,17 +187,7 @@ public class CatDAO {
             try (ResultSet rs = stmt.executeQuery()) {
 
                 while (rs.next()) {
-                    Cat cat = new Cat(
-                        rs.getInt("cat_id"),
-                        rs.getString("name"),
-                        rs.getObject("birthday", LocalDate.class),
-                        rs.getString("gender"),
-                        rs.getString("catType"),
-                        rs.getString("located_in"),
-                        rs.getString("description")
-                    );
-
-                    cats.add(cat);
+                    cats.add(mapRow(rs));
                 }
             }
 

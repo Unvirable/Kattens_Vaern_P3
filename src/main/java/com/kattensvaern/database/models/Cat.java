@@ -1,19 +1,21 @@
 package com.kattensvaern.database.models;
 
+import com.kattensvaern.database.models.enums.*;
+
 import java.time.LocalDate;
 
 public class Cat {
     private int id;
     private String name;
     private LocalDate birthday;
-    private String gender;
-    private String catType;
-    private String locatedIn;
+    private Gender gender;
+    private CatType catType;
+    private Shelter locatedIn;
     private String description;
-    private String available;
+    private Availability availability;
 
-    public Cat(int id, String name, LocalDate birthday, String gender, String catType,
-               String locatedIn, String description, String available){
+    public Cat(int id, String name, LocalDate birthday, Gender gender, CatType catType,
+               Shelter locatedIn, String description, Availability availability){
         this.id = id;
         this.name = name;
         this.birthday = birthday;
@@ -21,52 +23,44 @@ public class Cat {
         this.catType = catType;
         this.locatedIn = locatedIn;
         this.description = description;
-        this.available = available;
+        this.availability = availability;
     }
 
-    public Cat(int id, String name, LocalDate birthday, String gender, String catType,
-               String locatedIn, String description){
-        this.id = id;
+    public Cat(String name, LocalDate birthday, Gender gender, CatType catType,
+               Shelter locatedIn, String description, Availability availability){
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
         this.catType = catType;
         this.locatedIn = locatedIn;
         this.description = description;
+        this.availability = availability;
     }
 
-
-    public int getId() {
+    //GETTERS
+    public int getId(){
         return id;
     }
-
-    public String getName() {
+    public String getName(){
         return name;
     }
-
-    public LocalDate getBirthday() {
+    public LocalDate getBirthday(){
         return birthday;
     }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public String getCatType() {
-        return catType;
-    }
-
-    public String getLocatedIn() {
+    public Gender getGender(){return gender;}
+    public CatType getCatType(){return catType;}
+    public Shelter getLocatedIn(){
         return locatedIn;
     }
-
-    public String getDescription() {
+    public String getDescription(){
         return description;
     }
+    public Availability getAvailability(){return availability;}
 
-    public String getAvailability() {
-        return available;
-    }
+    public String getGenderLabel(){return gender.getLabel();}
+    public String getCatTypeLabel(){return catType.getLabel();}
+    public String getLocatedInLabel(){return locatedIn.getLabel();}
+    public String GetAvailabilityLabel(){return availability.getLabel();}
 
     public void setId(int id) {
         this.id = id;
@@ -80,15 +74,15 @@ public class Cat {
         this.birthday = birthday;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
-    public void setCatType(String catType) {
+    public void setCatType(CatType catType) {
         this.catType = catType;
     }
 
-    public void setLocatedIn(String locatedIn) {
+    public void setLocatedIn(Shelter locatedIn) {
         this.locatedIn = locatedIn;
     }
 
@@ -96,8 +90,8 @@ public class Cat {
         this.description = description;
     }
 
-    public void setAvailability(String available) {
-        this.available = available;
+    public void setAvailability(Availability availability) {
+        this.availability = availability;
     }
 
 

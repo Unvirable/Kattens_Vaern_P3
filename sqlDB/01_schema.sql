@@ -10,11 +10,11 @@ CREATE TABLE cats(
     cat_id SERIAL PRIMARY KEY,
     name varchar(50) NOT NULL,
     birthday DATE NOT NULL,
-    gender varchar(50) NOT NULL,
-    catType varchar(50) NOT NULL,
+    gender varchar(50) NOT NULL CHECK ( gender IN ('HAN','HUN') ),
+    cat_type varchar(50) NOT NULL CHECK ( cat_type IN ('INDE_UDE', 'KUN_INDE', 'KUN_UDE')),
     description varchar(500) NOT NULL,
-    located_in varchar(50) NOT NULL,
-    availability varchar(50) NOT NULL,
+    located_in varchar(50) NOT NULL CHECK ( located_in IN ('BROENDBY', 'RINGSTED', 'BILLUND', 'AALBORG', 'RINGE') ),
+    availability varchar(50) NOT NULL CHECK ( availability IN ('LEDIG', 'RESERVERET', 'ADOPTERET') ),
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
