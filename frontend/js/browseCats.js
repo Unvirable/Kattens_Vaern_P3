@@ -67,7 +67,7 @@ async function getCatDetails(){
     const id = params.get("id");
 
     try{
-        const response = await fetch(`http://localhost:8080/api/findCatById?id=${encodeURIComponent(id)}`)
+        const response = await fetch(`/api/findCatById?id=${encodeURIComponent(id)}`)
         if (!response.ok){
             throw new Error("Cat doesnt exist in database")
         }

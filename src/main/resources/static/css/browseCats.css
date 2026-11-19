@@ -32,3 +32,11 @@
     background-color: lightgray;
     box-shadow: 0 4px 18px 0;
 }
+
+.SmallDescription{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.95rem;
+}
