@@ -20,7 +20,7 @@ public class CatDAO {
     }
 
     public List<Cat> getAllCats(){
-        String sql = "Select cat_id, name, birthday, gender, catType, located_in, description From cats";
+        String sql = "SELECT cat_id, name, birthday, gender, catType, located_in, description, availability FROM cats";
 
         List<Cat> cats = new ArrayList<>();
 
@@ -36,7 +36,8 @@ public class CatDAO {
                             rs.getString("gender"),
                             rs.getString("catType"),
                             rs.getString("located_in"),
-                            rs.getString("description")
+                            rs.getString("description"),
+                            rs.getString("availability")
                     );
                     cats.add(cat);
                 }
@@ -48,7 +49,7 @@ public class CatDAO {
 
 
    public Cat findCatById(int id) {
-       String sql = "SELECT cat_id, name, birthday, gender, catType, located_in, description FROM cats WHERE cat_id = ?";
+       String sql = "SELECT cat_id, name, birthday, gender, catType, located_in, description, availability FROM cats WHERE cat_id = ?";
 
        try(Connection conn = dataSource.getConnection();
            PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -63,7 +64,8 @@ public class CatDAO {
                            rs.getString("gender"),
                            rs.getString("catType"),
                            rs.getString("located_in"),
-                           rs.getString("description")
+                           rs.getString("description"),
+                           rs.getString("availability")
                    );
                }
            }
@@ -71,6 +73,91 @@ public class CatDAO {
 
        return null;
    }
+
+
+   public void CreateCat(Cat cat){
+        String sql = "INSERT INTO cats (name, birthday, gender, cattype, located_in, description, availability) VALUES(?, ?, ?, ?, ?, ?, ?)";
+
+       try(Connection conn = dataSource.getConnection();
+           PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+
+
+               stmt.setString(1, cat.getName());
+               stmt.setDate(2, java.sql.Date.valueOf(cat.getBirthday()));
+               stmt.setString(3, cat.getGender());
+               stmt.setString(4, cat.getCatType());
+               stmt.setString(5, cat.getLocatedIn());
+               stmt.setString(6, cat.getDescription());
+               stmt.setString(7, cat.getAvailability());
+
+               stmt.executeUpdate();
+
+       } catch (SQLException e){
+           System.out.println("SOMETHINGS WRONG AAAAAAAAAAAH");   //temporary
+           throw new RuntimeException(e);
+       }
+   };
+
+
+
+
+
+
+    public void DeleteCat(int id){
+        String sql = "DELETE FROM cats WHERE cat_id = ?";
+
+        try(Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+
+
+            stmt.setInt(1, id);
+
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e){
+            System.out.println("SOMETHINGS WRONG AAAAAAAAAAAH");   //temporary
+            throw new RuntimeException(e);
+        }
+
+
+}
+
+
+
+
+    public void UpdateCat(Cat cat){
+        String sql = "UPDATE cats SET name = ?, birthday = ?, gender = ?, catType = ?, located_in = ?, description = ?, availability = ? WHERE cat_id = ?";
+
+        try(Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+
+
+            stmt.setString(1, cat.getName());
+            stmt.setDate(2, java.sql.Date.valueOf(cat.getBirthday()));
+            stmt.setString(3, cat.getGender());
+            stmt.setString(4, cat.getCatType());
+            stmt.setString(5, cat.getLocatedIn());
+            stmt.setString(6, cat.getDescription());
+            stmt.setString(7, cat.getAvailability());
+            stmt.setInt(8, cat.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e){
+            System.out.println("SOMETHINGS WRONG AAAAAAAAAAAH");   //temporary
+            throw new RuntimeException(e);
+        }
+
+    };
+
+
+
+
+
 
     public List<Cat> findCatsByOwnerEmail(String email) {
 
