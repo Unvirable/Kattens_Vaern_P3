@@ -87,8 +87,8 @@ public class CatDAO {
                stmt.setDate(2, java.sql.Date.valueOf(cat.getBirthday()));
                stmt.setString(3, cat.getGender());
                stmt.setString(4, cat.getCatType());
-           stmt.setString(5, cat.getLocatedIn());
-           stmt.setString(6, cat.getDescription());
+               stmt.setString(5, cat.getLocatedIn());
+               stmt.setString(6, cat.getDescription());
                stmt.setString(7, cat.getAvailability());
 
                stmt.executeUpdate();
@@ -97,11 +97,6 @@ public class CatDAO {
            System.out.println("SOMETHINGS WRONG AAAAAAAAAAAH");   //temporary
            throw new RuntimeException(e);
        }
-
-
-
-
-
    };
 
 
@@ -156,10 +151,6 @@ public class CatDAO {
             System.out.println("SOMETHINGS WRONG AAAAAAAAAAAH");   //temporary
             throw new RuntimeException(e);
         }
-
-
-
-
 
     };
 
