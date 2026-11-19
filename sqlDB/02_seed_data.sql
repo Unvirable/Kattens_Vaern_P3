@@ -3,12 +3,12 @@
 -- USERS
 -- =============================================
 
-INSERT INTO users (user_type) VALUES
-                                  ('admin'),
-                                  ('member'),
-                                  ('member'),
-                                  ('member'),
-                                  ('member');
+INSERT INTO users (user_type, password_hash) VALUES
+                                  ('admin', '$2a$10$Ws9vpJXcqkBxgZnoCAApAuqIvknUVjZtRCF7Ls29DhP/9b21H3/ky'),
+                                  ('user', '$2a$10$trk0GFGnPwIyz4EI2TiMKeuc2Jox4iKGndSzVrPLqlRgjwncRyXhu'),
+                                  ('user', '$2a$10$trk0GFGnPwIyz4EI2TiMKeuc2Jox4iKGndSzVrPLqlRgjwncRyXhu'),
+                                  ('user', '$2a$10$trk0GFGnPwIyz4EI2TiMKeuc2Jox4iKGndSzVrPLqlRgjwncRyXhu'),
+                                  ('user', '$2a$10$trk0GFGnPwIyz4EI2TiMKeuc2Jox4iKGndSzVrPLqlRgjwncRyXhu');
 
 
 -- =============================================

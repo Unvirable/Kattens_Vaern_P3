@@ -22,4 +22,16 @@ public class BrowseCatsService {
         return catDAO.findCatById(id);
     }
 
+    public void createCat(Cat cat) {
+        catDAO.CreateCat(cat);
+    }
+
+    public void updateCat(Cat cat) {
+        catDAO.UpdateCat(cat);
+    }
+
+    public void deleteCat(int id) {
+        catDAO.DeleteCat(id);
+    }
+
 }

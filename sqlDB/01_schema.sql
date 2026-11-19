@@ -1,6 +1,9 @@
 CREATE TABLE users(
     user_id SERIAL PRIMARY KEY,
-    user_type varchar(50) NOT NULL
+    user_type varchar(50) NOT NULL DEFAULT 'user',
+    password_hash VARCHAR(255) NOT NULL,
+    enabled BOOLEAN NOT NULL DEFAULT TRUE
+    
 );
 
 CREATE TABLE cats(
@@ -17,7 +20,7 @@ CREATE TABLE cats(
 
 CREATE TABLE userInfo(
     user_info_id SERIAL PRIMARY KEY,
-    user_id INTEGER references users (user_id),
+    user_id INTEGER NOT NULL UNIQUE references users (user_id),
     name varchar(80) NOT NULL,
     email varchar(200) NOT NULL UNIQUE,
     phonenumber varchar(20) NOT NULL UNIQUE,
@@ -30,7 +33,7 @@ CREATE TABLE membership(
     membership_id SERIAL PRIMARY KEY,
     is_member BOOLEAN NOT NULL,
     membership_number varchar(200) NOT NULL,
-    user_id INTEGER references users (user_id),
+    user_id INTEGER NOT NULL UNIQUE references users (user_id),
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

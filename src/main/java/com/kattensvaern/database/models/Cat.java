@@ -31,7 +31,7 @@ public class Cat {
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
-        this. catType = catType;
+        this.catType = catType;
         this.locatedIn = locatedIn;
         this.description = description;
         this.availability = availability;
@@ -61,4 +61,39 @@ public class Cat {
     public String getCatTypeLabel(){return catType.getLabel();}
     public String getLocatedInLabel(){return locatedIn.getLabel();}
     public String GetAvailabilityLabel(){return availability.getLabel();}
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setCatType(CatType catType) {
+        this.catType = catType;
+    }
+
+    public void setLocatedIn(Shelter locatedIn) {
+        this.locatedIn = locatedIn;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAvailability(Availability availability) {
+        this.availability = availability;
+    }
+
+
+
 }
