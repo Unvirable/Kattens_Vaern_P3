@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Min profil | Kattens Værn</title>
+
+    <link rel="stylesheet" href="../css/base.css">
+    <script src="../js/loadNavbar.js" defer></script>
+    <script src="../js/profile.js" defer></script>
+
+</head>
+
+<body onload="loadNavbar()">
+
+    <div id="navBar"></div>
+
+    <main>
+        <h1>Min profil</h1>
+
+        <section>
+            <h2>Personlige oplysninger</h2>
+
+            <p><strong>Navn:</strong> <span id="profileName">Indlæser...</span></p>
+            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+            <p><strong>Telefon:</strong> <span id="profilePhone"></span></p>
+            <p><strong>Alder:</strong> <span id="profileAge"></span></p>
+            <p><strong>Adresse:</strong> <span id="profileAddress"></span></p>
+        </section>
+
+        <section>
+            <h2>Medlemskab</h2>
+
+            <p><strong>Status:</strong> <span id="membershipStatus"></span></p>
+
+            <p id="membershipNumberContainer" hidden>
+                <strong>Medlemsnummer:</strong>
+                <span id="membershipNumber"></span>
+            </p>
+        </section>
+
+        
+        <section>
+            <h2>Indstillinger</h2>
+
+            <p>Profilindstillinger kommer senere.</p>
+
+            <form id="logoutForm" action="/logout" method="POST">
+                <button type="submit">Log ud</button>
+            </form>
+        </section>
+
+    </main>
+
+</body>
+</html>

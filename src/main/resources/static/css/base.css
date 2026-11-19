@@ -1,0 +1,139 @@
+/* ==========================================================
+   base.css: shared basics for all pages in Kattens Værn
+   ========================================================== */
+
+:root {
+    --cream: #f6f5ef;
+    --sand-dark: #d8d3c6;
+    --white: #ffffff;
+    --green: #294c3d;
+    --green-2: #3b5f4e;
+    --green-soft: #e9eee7;
+    --green-pale: #f1f4ef;
+    --blue: #536df5;
+    --ink: #26342d;
+    --muted: #6e786f;
+
+    --phone-width: 430px;
+    --gap: 16px;
+}
+
+* { box-sizing: border-box; }
+
+/* ---------- Outside background ---------- */
+html {
+    height: 100%;
+    overflow: hidden;
+    background: var(--sand-dark);
+}
+
+/* ---------- The phone: a closed box that scrolls inside ---------- */
+body {
+    width: 100%;
+    max-width: var(--phone-width);
+    height: 100dvh;
+    margin: 0 auto;
+    padding: 0 var(--gap) var(--gap);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    box-shadow: 0 0 40px rgba(0, 0, 0, .18);
+}
+
+@media (min-width: 431px) {
+    body {
+        height: calc(100dvh - 40px);
+        max-height: 860px;
+        margin-top: 20px;
+        border: 8px solid var(--green);
+        border-radius: 36px;
+    }
+}
+
+@media (max-width: 430px) {
+    body { box-shadow: none; }
+}
+
+/* ---------- Typography ---------- */
+h1 { font-size: 1.5rem; line-height: 1.25; margin: 16px 0 12px; }
+h2 { font-size: 1.25rem; margin: 0 0 8px; }
+h3 { font-size: 1.05rem; margin: 0 0 4px; }
+p  { margin: 0 0 12px; }
+
+h1, h2, h3 { color: var(--green); }
+a { color: var(--green); }
+.muted { color: var(--muted); }
+
+/* ---------- Navbar (works with <ul><li><a> or plain <a>) ---------- */
+#navBar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 0 calc(var(--gap) * -1);
+    background-color: var(--white);
+    border-bottom: 1px solid var(--sand-dark);
+}
+
+#navBar ul,
+#navBar nav {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#navBar li { flex: 1; list-style: none; }
+
+#navBar a {
+    display: block;
+    padding: 14px 2px;
+    text-align: center;
+    text-decoration: none;
+    font-size: .78rem;
+    white-space: nowrap;
+    color: var(--green);
+}
+
+#navBar a:hover { background-color: var(--green-soft); }
+
+
+/* Small, circular profile button */
+#profileIcon {
+    position: absolute;
+    right: 8px;
+    top: calc(100% + 6px);
+
+    width: 34px;
+    height: 34px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(41, 76, 61, 0.2);
+    border-radius: 50%;
+
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--green);
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(4px);
+
+    transition: background 0.2s ease;
+}
+
+#profileIcon:hover {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+#profileIcon[hidden] {
+    display: none;
+}

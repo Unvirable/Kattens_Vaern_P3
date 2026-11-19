@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Min kat | Kattens Værn</title>
+
+    <link rel="stylesheet" href="../css/base.css">
+    <script src="../js/loadNavbar.js" defer></script>
+    <script src="../js/myCat.js" defer></script>
+
+</head>
+
+<body onload="loadNavbar()">
+
+    <div id="navBar"></div>
+
+    <main>
+        <h1>Min kat</h1>
+
+        <p>Her kan du se information om dine adopterede katte.</p>
+
+        <!-- JavaScript will insert adopted cats here -->
+        <div id="myCatsContainer">
+            <p>Indlæser dine katte...</p>
+        </div>
+
+        <!-- Displayed when the user has no adopted cats -->
+        <div id="noCatsMessage" hidden>
+            <h2>Du har endnu ikke adopteret en kat</h2>
+            <p>Se vores katte, der søger et nyt hjem.</p>
+
+            <a href="browseCats.html">Se katte til adoption</a>
+        </div>
+    </main>
+
+</body>
+</html>

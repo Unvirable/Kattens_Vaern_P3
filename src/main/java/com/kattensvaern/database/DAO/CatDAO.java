@@ -8,6 +8,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import com.kattensvaern.database.models.MedicalRecord;
 
 //Handles talking with the Database
 @Repository
@@ -167,6 +168,109 @@ public class CatDAO {
 
 
 
+    public List<Cat> findCatsByOwnerEmail(String email) {
+
+        String sql = """
+            SELECT
+                c.cat_id,
+                c.name,
+                c.birthday,
+                c.gender,
+                c.catType,
+                c.located_in,
+                c.description
+            FROM cats c
+            JOIN adoptionRecord ar ON c.cat_id = ar.cat_id
+            JOIN users u ON ar.user_id = u.user_id
+            JOIN userInfo ui ON u.user_id = ui.user_id
+            WHERE LOWER(ui.email) = LOWER(?)
+            ORDER BY c.name
+            """;
+
+        List<Cat> cats = new ArrayList<>();
+
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, email);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                while (rs.next()) {
+                    Cat cat = new Cat(
+                        rs.getInt("cat_id"),
+                        rs.getString("name"),
+                        rs.getObject("birthday", LocalDate.class),
+                        rs.getString("gender"),
+                        rs.getString("catType"),
+                        rs.getString("located_in"),
+                        rs.getString("description")
+                    );
+
+                    cats.add(cat);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new IllegalStateException(
+                "Failed to load adopted cats", e
+            );
+        }
+
+        return cats;
+    }
+
+
+    public List<MedicalRecord> findMedicalRecordsByCatAndOwner(
+            int catId, String email) {
+
+        String sql = """
+            SELECT
+                mr.medical_record_id,
+                mr.cat_id,
+                mr.record_type,
+                mr.description,
+                mr.next_dueDate
+            FROM medicalRecord mr
+            JOIN adoptionRecord ar ON mr.cat_id = ar.cat_id
+            JOIN users u ON ar.user_id = u.user_id
+            JOIN userInfo ui ON u.user_id = ui.user_id
+            WHERE mr.cat_id = ?
+            AND LOWER(ui.email) = LOWER(?)
+            ORDER BY mr.next_dueDate
+            """;
+
+        List<MedicalRecord> records = new ArrayList<>();
+
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, catId);
+            stmt.setString(2, email);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                while (rs.next()) {
+                    MedicalRecord record = new MedicalRecord(
+                        rs.getInt("medical_record_id"),
+                        rs.getInt("cat_id"),
+                        rs.getString("record_type"),
+                        rs.getString("description"),
+                        rs.getObject("next_dueDate", LocalDate.class)
+                    );
+
+                    records.add(record);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new IllegalStateException(
+                "Failed to load medical records", e
+            );
+        }
+
+        return records;
+    }
 
 
 }
