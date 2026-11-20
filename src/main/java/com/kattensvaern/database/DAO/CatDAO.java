@@ -1,6 +1,7 @@
 package com.kattensvaern.database.DAO;
 
 import com.kattensvaern.database.models.Cat;
+import com.kattensvaern.database.models.CatImage;
 import com.kattensvaern.database.models.enums.*;
 import org.springframework.stereotype.Repository;
 
@@ -252,5 +253,26 @@ public class CatDAO {
         return records;
     }
 
+    public CatImage getCatImage(int id){
+        String sql = "SELECT content_type, data FROM catimages WHERE cat_id = ?";
+
+        try(Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1,id);
+            try(ResultSet rs = stmt.executeQuery()){
+                if(rs.next()){
+                    return new CatImage(
+                            rs.getString("content_type"),
+                            rs.getBytes("data")
+                    );
+
+                }
+            }
+        } catch (SQLException e){ e.printStackTrace();}
+
+        return null;
+
+    }
 
 }
