@@ -2,6 +2,7 @@ package com.kattensvaern.service;
 
 import com.kattensvaern.database.DAO.CatDAO;
 import com.kattensvaern.database.models.Cat;
+import com.kattensvaern.database.models.CatImage;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -33,5 +34,7 @@ public class BrowseCatsService {
     public void deleteCat(int id) {
         catDAO.DeleteCat(id);
     }
+
+    public CatImage getCatImage(int id){ return catDAO.getCatImage(id);}
 
 }
