@@ -22,7 +22,7 @@ CREATE TABLE catimages(
     cat_id INT PRIMARY KEY REFERENCES cats(cat_id) ON DELETE CASCADE,
     content_type varchar(50) NOT NULL,
     data BYTEA NOT NULL
-)
+);
 
 CREATE TABLE userInfo(
     user_info_id SERIAL PRIMARY KEY,
