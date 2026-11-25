@@ -1,7 +1,10 @@
 package com.kattensvaern.controller;
 
 import com.kattensvaern.database.models.Cat;
+import com.kattensvaern.database.models.CatImage;
 import com.kattensvaern.service.BrowseCatsService;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,4 +56,12 @@ public class BrowseCatsController {
         browseCatsService.deleteCat(id);
     }
 
+    @GetMapping("/api/getCatImage")
+    public ResponseEntity<byte[]> getCatImage(@RequestParam int id){
+        CatImage img = browseCatsService.getCatImage(id);
+
+        if(img == null){return ResponseEntity.notFound().build();}
+
+        return ResponseEntity.ok().contentType(MediaType.parseMediaType(img.contentType())).body((img.data()));
+        }
 }

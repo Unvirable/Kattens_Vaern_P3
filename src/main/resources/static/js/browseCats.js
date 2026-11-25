@@ -23,6 +23,16 @@ function renderCats(cats){
             const catElement = document.createElement("div");
             catElement.classList.add("cat");
 
+            const img = document.createElement("img")
+            img.src = `/api/getCatImage?id=${cat.id}`;
+            img.alt = cat.name;
+            img.loading = "lazy";
+            img.classList.add("catImage");
+            img.onerror = () => {
+                img.onerror = null;
+                img.src = "/images/placeholder.jpg"
+            }
+
             const name = document.createElement("h2");
             name.textContent = "Navn: " + cat.name;
 
@@ -46,6 +56,7 @@ function renderCats(cats){
                 window.location.href = `individualCatInfo.html?id=${cat.id}`
             });
 
+            catElement.appendChild(img);
             catElement.appendChild(name);
             catElement.appendChild(age);
             catElement.appendChild(city);
@@ -74,6 +85,15 @@ async function getCatDetails(){
         const cat = await response.json()
         const catBox = document.getElementById("catDetails");
 
+        const img = document.createElement("img")
+        img.src = `/api/getCatImage?id=${cat.id}`;
+        img.alt = cat.name;
+        img.classList.add("catImage");
+        img.onerror = () => {
+            img.onerror = null;
+            img.src = "/images/placeholder.jpg"
+        }
+
         const name = document.createElement("h2")
         name.textContent = cat.name;
 
@@ -89,6 +109,7 @@ async function getCatDetails(){
         const description = document.createElement("p")
         description.textContent = cat.description;
 
+        catBox.appendChild(img)
         catBox.appendChild(name)
         catBox.appendChild(foedselsdag)
         catBox.appendChild(catType)

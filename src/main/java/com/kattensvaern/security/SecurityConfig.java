@@ -36,6 +36,7 @@ public class SecurityConfig {
                 // Public pages and API endpoints
                 .requestMatchers(
                     "/api/getCats",
+                    "/api/getCatImage",
                     "/api/findCatById",
                     "/api/news",
                     "/api/hello",
