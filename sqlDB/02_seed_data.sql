@@ -162,3 +162,18 @@ VALUES
         'Our volunteers play an essential role in caring for the cats at our shelters. From feeding and cleaning to socialising cats and helping with adoptions, every contribution makes a difference. Thank you for your continued support!',
         'Kattens Værn'
     );
+
+INSERT INTO appointments (user_id, cat_id, appointment_time)
+VALUES
+    (2, 1,  '2026-11-30 09:00'),
+    (3, 2,  '2026-11-30 11:00'),
+    (2, 9,  '2026-12-01 13:00'),
+    (4, 11, '2026-12-01 15:00'),
+    (5, 17, '2026-12-02 09:00'),
+    (3, 25, '2026-12-02 16:00'),
+    (4, 33, '2026-12-03 11:00'),
+    (5, 38, '2026-12-03 13:00'),
+    (2, 3,  '2026-12-04 15:00'),
+    (3, 4,  '2026-12-04 09:00'),
+    (4, 1,  '2026-11-24 13:00'),
+    (5, 9,  '2026-11-25 11:00');

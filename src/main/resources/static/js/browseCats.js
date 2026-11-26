@@ -109,13 +109,43 @@ async function getCatDetails(){
         const description = document.createElement("p")
         description.textContent = cat.description;
 
+        const button = document.createElement("button")
+        button.textContent = "Book tid til at møde Katten ";
+        button.classList.add("mødKatten");
+        button.addEventListener("click", () => {
+            bookingSystemAuth(cat.id);
+        });
+
         catBox.appendChild(img)
         catBox.appendChild(name)
         catBox.appendChild(foedselsdag)
         catBox.appendChild(catType)
         catBox.appendChild(city)
         catBox.appendChild(description)
+        catBox.appendChild(button)
     } catch(error){
         console.error("Error", error)
+    }
+}
+
+async function bookingSystemAuth(catId){
+    try{
+        const response = await fetch("/api/auth/status")
+        const status = await response.json()
+
+        console.log("Authentication status:", status);
+        console.log("Is authenticated:", status.authenticated);
+
+        if(status.loggedIn === true){
+            window.location.href = `appointmentBooking.html?id=${catId}`
+        }else{
+            const wantsToLogin = confirm("Du skal være logget ind for at booke tid, vil du logge ind?")
+            if (wantsToLogin){
+                window.location.href = `appointmentBooking.html?id=${catId}`
+            }
+        }
+    }catch (error){
+        console.log("Could not check Authentication",error);
+        alert("Noget gik galt prøv igen.")
     }
 }

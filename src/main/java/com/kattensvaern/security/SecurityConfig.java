@@ -26,11 +26,12 @@ public class SecurityConfig {
                 .requestMatchers("/api/profile").authenticated()
                 // require login for cats, protected API              
                 .requestMatchers("/api/mycats", "/api/mycats/**").authenticated()
-                
+                .requestMatchers("/api/createAppointment").authenticated()
                 // protected HTML pages
                 .requestMatchers(
                     "/html/profilePage.html",
-                    "/html/myCatPage.html"
+                    "/html/myCatPage.html",
+                    "/html/appointmentBooking.html"
                 ).authenticated()
 
                 // Public pages and API endpoints
@@ -45,7 +46,8 @@ public class SecurityConfig {
                     "/html/**",
                     "/css/**",
                     "/js/**",
-                    "/favicon.ico"
+                    "/favicon.ico",
+                    "/api/getAppointments"
                 ).permitAll()
                 // All other requests require authentication
                 .anyRequest().authenticated()

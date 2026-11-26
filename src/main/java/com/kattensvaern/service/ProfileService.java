@@ -17,4 +17,12 @@ public class ProfileService {
     public UserProfile getProfileByEmail(String email) {
         return userDAO.findProfileByEmail(email);
     }
+
+    public int findUserByEmail(String email){
+        UserDAO.UserCredentials user = userDAO.findByEmail(email);
+        if(user == null){
+            throw new IllegalArgumentException("Bruger findes ikke");
+        }
+        return user.id();
+    }
 }
