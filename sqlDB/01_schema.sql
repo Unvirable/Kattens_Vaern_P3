@@ -66,3 +66,15 @@ CREATE TABLE newsArticles(
     published_by varchar(200) NOT NULL,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE appointments(
+    appointment_id   SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL references users (user_id) ON DELETE CASCADE,
+    cat_id INTEGER NOT NULL references cats (cat_id) ON DELETE CASCADE,
+    appointment_time TIMESTAMP NOT NULL,
+    date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX one_appointment_per_cat_per_day ON appointments(
+    cat_id,((appointment_time):: date)
+);
