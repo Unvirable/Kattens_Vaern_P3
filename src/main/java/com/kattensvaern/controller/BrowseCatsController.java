@@ -42,18 +42,66 @@ public class BrowseCatsController {
 
     @PostMapping("/api/cats")
     public void createCat(@RequestBody Cat cat) {
-        browseCatsService.createCat(cat);
+        try {
+            if (cat == null ||
+                    cat.getName() == null || cat.getName().isBlank() ||
+                    cat.getBirthday() == null ||
+                    cat.getGender() == null ||
+                    cat.getCatType() == null ||
+                    cat.getLocatedIn() == null ||
+                    cat.getAvailability() == null) {
+
+                System.out.println("ERROR: Invalid cat information");
+                return;
+            }
+
+            browseCatsService.createCat(cat);
+
+        } catch (Exception e) {
+            System.out.println("ERROR: Failed to create cat");
+            e.printStackTrace();
+        }
     }
 
     @PutMapping("/api/cats/{id}")
     public void updateCat(@PathVariable int id, @RequestBody Cat cat) {
-        cat.setId(id);
-        browseCatsService.updateCat(cat);
+        try {
+            if (id <= 0 ||
+                    cat == null ||
+                    cat.getName() == null || cat.getName().isBlank() ||
+                    cat.getBirthday() == null ||
+                    cat.getGender() == null ||
+                    cat.getCatType() == null ||
+                    cat.getLocatedIn() == null ||
+                    cat.getAvailability() == null) {
+
+                System.out.println("ERROR: Invalid cat information");
+                return;
+            }
+
+            cat.setId(id);
+            browseCatsService.updateCat(cat);
+
+        } catch (Exception e) {
+            System.out.println("ERROR: Failed to update cat");
+            e.printStackTrace();
+        }
     }
 
     @DeleteMapping("/api/cats/{id}")
     public void deleteCat(@PathVariable int id) {
-        browseCatsService.deleteCat(id);
+        try {
+            if (id <= 0) {
+                System.out.println("ERROR: Invalid cat ID");
+                return;
+            }
+
+            browseCatsService.deleteCat(id);
+
+        } catch (Exception e) {
+            System.out.println("ERROR: Failed to delete cat");
+            e.printStackTrace();
+        }
     }
 
     @GetMapping("/api/getCatImage")

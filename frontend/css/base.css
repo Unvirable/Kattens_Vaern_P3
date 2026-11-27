@@ -43,6 +43,14 @@ body {
     box-shadow: 0 0 40px rgba(0, 0, 0, .18);
 }
 
+body {
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
 @media (min-width: 431px) {
     body {
         height: calc(100dvh - 40px);
@@ -68,14 +76,28 @@ a { color: var(--green); }
 .muted { color: var(--muted); }
 
 /* ---------- Navbar (works with <ul><li><a> or plain <a>) ---------- */
+
 #navBar {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 414px;
+    max-width: 100%;
+    margin: 0;
     z-index: 10;
-    margin: 0 calc(var(--gap) * -1);
     background-color: var(--white);
-    border-bottom: 1px solid var(--sand-dark);
+    border-top: 1px solid var(--sand-dark);
+    border-radius: 0 0 28px 28px;
+    overflow: hidden;
 }
+
+@media (min-width: 431px) {
+    #navBar {
+        bottom: 28px;
+    }
+}
+
 
 #navBar ul,
 #navBar nav {
